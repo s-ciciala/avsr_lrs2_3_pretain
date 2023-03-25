@@ -270,6 +270,7 @@ def generate_extended_test_file():
 
         print("\nParsing Folder:" + folder)
         example_dir = test_dir + folder + "/"
+        print(example_dir)
         examples = [f for f in listdir(example_dir) if isfile(join(example_dir, f))]
         ##NOTE assumption that each text file HAS an associated .mp4
         examples_textonly = [ex for ex in examples if ".txt" in ex]
