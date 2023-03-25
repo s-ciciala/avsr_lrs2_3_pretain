@@ -19,7 +19,7 @@ args["TRAINVAL_DIRECTORY"] = "../../lrs3/" + "pretrain/"
 args["DEMO_DIRECTORY"] = "../../avsr_lrs3_CTRS/audio_only/demo/"   #absolute path to the demo directory
 args["PRETRAINED_MODEL_FILE"] = "/final/models/pretrained_model.pt"     #relative path to the pretrained model file
 # args["TRAINED_MODEL_FILE"] = "/final/models/trained_model.pt"   #relative path to the trained model file
-args["TRAINED_MODEL_FILE"] = "audio_only_checkpoints/models/train-step_0970-wer_1.043.pt"   #relative path to the trained model file
+args["TRAINED_MODEL_FILE"] = "../../pre_models/pre_models/audio-visual.pt"   #relative path to the trained model file
 args["TRAINED_FRONTEND_FILE"] = "../../deep_avsr_models/visual_frontend/visual_frontend.pt" #absolute path to the trained language model file
 args["TRAINED_LM_FILE"] = "../../deep_avsr_models/language_model/language_model.pt" #absolute path to the trained visual frontend file
 
@@ -85,20 +85,20 @@ args["NUM_CLASSES"] = 40    #number of output characters
 
 
 #transformer architecture
-# args["PE_MAX_LENGTH"] = 2500    #length up to which we calculate positional encodings
-# args["TX_NUM_FEATURES"] = 512   #transformer input feature size
-# args["TX_ATTENTION_HEADS"] = 8  #number of attention heads in multihead attention layer
-# args["TX_NUM_LAYERS"] = 6   #number of Transformer Encoder blocks in the stack
-# args["TX_FEEDFORWARD_DIM"] = 2048   #hidden layer size in feedforward network of transformer
-# args["TX_DROPOUT"] = 0.1    #dropout probability in the transformer
-args["DISPLAY_PREDICTIONS"] = False
 args["PE_MAX_LENGTH"] = 2500    #length up to which we calculate positional encodings
 args["TX_NUM_FEATURES"] = 512   #transformer input feature size
-args["TX_ATTENTION_HEADS"] = 4  #number of attention heads in multihead attention layer
-args["TX_NUM_LAYERS"] = 3  #number of Transformer Encoder blocks in the stack
-args["TX_FEEDFORWARD_DIM"] = 1024   #hidden layer size in feedforward network of transformer
-# args["TX_FEEDFORWARD_DIM"] = 2048   #hidden layer size in feedforward network of transformer
+args["TX_ATTENTION_HEADS"] = 8  #number of attention heads in multihead attention layer
+args["TX_NUM_LAYERS"] = 6   #number of Transformer Encoder blocks in the stack
+args["TX_FEEDFORWARD_DIM"] = 2048   #hidden layer size in feedforward network of transformer
 args["TX_DROPOUT"] = 0.1    #dropout probability in the transformer
+args["DISPLAY_PREDICTIONS"] = True
+# args["PE_MAX_LENGTH"] = 2500    #length up to which we calculate positional encodings
+# args["TX_NUM_FEATURES"] = 512   #transformer input feature size
+# args["TX_ATTENTION_HEADS"] = 4  #number of attention heads in multihead attention layer
+# args["TX_NUM_LAYERS"] = 3  #number of Transformer Encoder blocks in the stack
+# args["TX_FEEDFORWARD_DIM"] = 1024   #hidden layer size in feedforward network of transformer
+# # args["TX_FEEDFORWARD_DIM"] = 2048   #hidden layer size in feedforward network of transformer
+# args["TX_DROPOUT"] = 0.1    #dropout probability in the transformer
 
 
 
