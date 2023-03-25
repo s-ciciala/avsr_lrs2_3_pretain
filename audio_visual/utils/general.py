@@ -8,6 +8,7 @@ https://github.com/lordmartian/deep_avsr
 import torch
 import numpy as np
 from tqdm import tqdm
+from config import args
 
 from .metrics import compute_cer, compute_wer
 from .decoders import ctc_greedy_decode, ctc_search_decode
@@ -106,6 +107,9 @@ def evaluate(model, evalLoader, loss_function, device, evalParams):
             pass
 
         model.eval()
+        index_to_char = args["INDEX_TO_CHAR"]
+        predictionStrings = []
+        targetStrings = []
         with torch.no_grad():
             outputBatch = model(inputBatch)
             with torch.backends.cudnn.flags(enabled=False):
@@ -132,8 +136,41 @@ def evaluate(model, evalLoader, loss_function, device, evalParams):
 
         evalCER = evalCER + compute_cer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch)
         evalWER = evalWER + compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch, evalParams["spaceIx"])
+        ##Per batch, predict what it should be , show the target
+        # Convert prediction and target tensors to strings
+        index_to_char = args["INDEX_TO_CHAR"]
+        predictionString = ""
+        for i in range(len(predictionBatch)):
+            item_idx = predictionBatch[i].item()
+            charrr = index_to_char[item_idx]
+            predictionString += str(charrr)
+        predictionStrings.append(predictionString)
+        targetString = ""
+        for i in range(len(targetBatch)):
+            item_idx = targetBatch[i].item()
+            charrr = index_to_char[item_idx]
+            targetString += str(charrr)
+        targetStrings.append(targetString)
 
     evalLoss = evalLoss/len(evalLoader)
     evalCER = evalCER/len(evalLoader)
     evalWER = evalWER/len(evalLoader)
+    if args["DISPLAY_PREDICTIONS"]:
+        for i in range(len(predictionStrings)):
+            print("------------------PREDICTION------------------")
+            print("------------------PREDICTION------------------")
+            print(predictionStrings[i])
+            print("------------------TARGET------------------")
+            print("------------------TARGET------------------")
+            print(targetStrings[i])
+        with open('test_results_audio_only.txt', 'w') as f:
+            for i in range(len(predictionStrings)):
+                f.write("------------------TARGET------------------\n")
+                f.write("%s\n" % str(targetStrings[i]))
+                f.write("------------------PREDICTION------------------\n")
+                f.write("%s\n" % str(predictionStrings[i]))
+            f.write("\n" + "evalLoss: " + str(evalLoss))
+            f.write("\n" + "evalCER: " + str(evalCER))
+            f.write("\n" + "evalWER: " + str(evalWER))
+
     return evalLoss, evalCER, evalWER
