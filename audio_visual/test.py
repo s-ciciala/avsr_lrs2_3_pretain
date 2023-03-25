@@ -55,9 +55,9 @@ def main():
 
 
         #declaring the language model
-        lm = LRS2CharLM()
-        lm.load_state_dict(torch.load(args["TRAINED_LM_FILE"], map_location=device))
-        lm.to(device)
+        # lm = LRS2CharLM()
+        # lm.load_state_dict(torch.load(args["TRAINED_LM_FILE"], map_location=device))
+        # lm.to(device)
         if not args["USE_LM"]:
             lm = None
 
