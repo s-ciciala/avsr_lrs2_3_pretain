@@ -11,6 +11,7 @@ args["TEST_DIRECTORY"] = "../../lrs3/" + "pretrain/"
 args["TEST_SIZE"] = 1000
 args["VAL_DIRECTORY"] = "../../lrs3/" + "test/"
 args["TRAINVAL_DIRECTORY"] = "../../lrs3/" + "pretrain/"
+args["PRETRAIN_DIRECTORY"] = "../../lrs3/" + "pretrain/"
 args["DEMO_DIRECTORY"] = "../../avsr_lrs3_CTRS/audio_only/demo/"   #absolute path to the demo directory
 args["PRETRAINED_MODEL_FILE"] = "/final/models/pretrained_model.pt"     #relative path to the pretrained model file
 # args["TRAINED_MODEL_FILE"] = "/final/models/trained_model.pt"   #relative path to the trained model file
