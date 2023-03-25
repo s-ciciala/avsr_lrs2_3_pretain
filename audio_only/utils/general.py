@@ -101,8 +101,9 @@ def evaluate(model, evalLoader, loss_function, device, evalParams):
 
             inputBatch, targetBatch = (inputBatch.float()).to(device), (targetBatch.float()).to(device)
             inputLenBatch, targetLenBatch = (inputLenBatch.int()).to(device), (targetLenBatch.int()).to(device)
-            model.module.listener.flatten_parameters()
-            model.module.speller.flatten_parameters()
+            if args["LSTM_ON"]:
+                model.module.listener.flatten_parameters()
+                model.module.speller.flatten_parameters()
             outputBatch = model(inputBatch)
 
             with torch.backends.cudnn.flags(enabled=True):

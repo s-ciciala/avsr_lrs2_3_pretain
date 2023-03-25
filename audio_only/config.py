@@ -85,6 +85,7 @@ args["DISPLAY_PREDICTIONS"] = False
 # args["TX_FEEDFORWARD_DIM"] = 1024   #hidden layer size in feedforward network of transformer
 # # args["TX_FEEDFORWARD_DIM"] = 2048   #hidden layer size in feedforward network of transformer
 # args["TX_DROPOUT"] = 0.1    #dropout probability in the transformer
+args["LSTM_ON"] = False
 #
 
 
