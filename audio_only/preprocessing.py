@@ -262,7 +262,7 @@ def generate_extended_test_file():
     ##CUT EXAMPLES:
     print("Length of examples before the cull: " + str(len(dirs_test)))
     print("Length of examples before the cull: " + str(len(pretrain_dir)))
-    dirs = test_dir + dirs_pretrain[:args["TEST_SIZE"]]
+    dirs = test_dir + pretrain_dir[:args["TEST_SIZE"]]
     print("TEST_DIRS")
     print(dirs_test)
     print("pretrain_dir")
