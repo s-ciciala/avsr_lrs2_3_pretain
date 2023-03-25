@@ -13,7 +13,7 @@ import numpy as np
 from config import args
 from models.av_net import AVNet
 from models.lrs2_char_lm import LRS2CharLM
-from data.lrs3_dataset import LRS2Main
+from data.lrs3_dataset import LRS3Main
 from data.utils import collate_fn
 from utils.general import evaluate
 
@@ -37,7 +37,7 @@ def main():
         noiseParams = {"noiseFile":args["DATA_DIRECTORY"] + "/noise.wav", "noiseProb":1, "noiseSNR":args["NOISE_SNR_DB"]}
     else:
         noiseParams = {"noiseFile":args["DATA_DIRECTORY"] + "/noise.wav", "noiseProb":0, "noiseSNR":args["NOISE_SNR_DB"]}
-    testData = LRS2Main("test", args["DATA_DIRECTORY"], args["MAIN_REQ_INPUT_LENGTH"], args["CHAR_TO_INDEX"], args["STEP_SIZE"],
+    testData = LRS3Main("test", args["DATA_DIRECTORY"], args["MAIN_REQ_INPUT_LENGTH"], args["CHAR_TO_INDEX"], args["STEP_SIZE"],
                         audioParams, videoParams, noiseParams)
     testLoader = DataLoader(testData, batch_size=args["BATCH_SIZE"], collate_fn=collate_fn, shuffle=True, **kwargs)
 
