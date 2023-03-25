@@ -362,5 +362,5 @@ if __name__ == "__main__":
     # generate_train_file()
     # generate_val_file()
     # generate_test_file()
-    # generate_extended_test_file()
+    generate_extended_test_file()
     print("Completed")
