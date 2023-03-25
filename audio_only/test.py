@@ -58,7 +58,7 @@ def main():
                          args["NUM_CLASSES"])
 
         # model.load_state_dict(torch.load(args["CODE_DIRECTORY"] + args["TRAINED_MODEL_FILE"], map_location=device))
-        saved_state_dict = torch.load(args["CODE_DIRECTORY"] + args["TRAINED_MODEL_FILE"], map_location=device)
+        saved_state_dict = torch.load( args["TRAINED_MODEL_FILE"], map_location=device)
         new_state_dict = {}
         for k, v in saved_state_dict.items():
             name = k.replace('module.', '')  # remove the "module." prefix
