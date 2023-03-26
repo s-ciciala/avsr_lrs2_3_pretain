@@ -33,6 +33,7 @@ class PositionalEncoding(nn.Module):
 
 
     def forward(self, inputBatch):
+        print("HERE")
         print(len(inputBatch))
         print(len(self.pe[:inputBatch.shape[0],:,:]))
         if len(self.pe[:inputBatch.shape[0],:,:]) > len(inputBatch):
