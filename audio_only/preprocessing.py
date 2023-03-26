@@ -304,6 +304,38 @@ def split_trainval(fileList):
         exit()
     return train, val
 
+def check_files_correct_len(train, val, test,pretrain):
+    train_len = len(train)
+    val_len = len(val)
+    test_len = len(test)
+    extended_test_len = len(test) + len(pretrain)
+    val_dir_file = args["DATA_DIRECTORY"] + "/val.txt"
+    train_dir_file = args["DATA_DIRECTORY"] + "/train.txt"
+    test_dir_file = args["DATA_DIRECTORY"] + "/test.txt"
+    extnended_test_dir_file = args["DATA_DIRECTORY"] + "/extended_test.txt"
+
+    with open(train_dir_file) as f:
+        text = f.readlines()
+        train_file_len = len(text)
+
+    with open(val_dir_file) as f:
+        text = f.readlines()
+        val_file_len = len(text)
+
+    with open(test_dir_file) as f:
+        text = f.readlines()
+        test_file_len = len(text)
+
+    with open(extnended_test_dir_file) as f:
+        text = f.readlines()
+        extended_test_file_len = len(text)
+
+    print("Expected train len: " + str(train_len) + " Got train len: " + str(train_file_len))
+    print("Expected val len: " + str(val_len) + " Got val len: " + str(val_file_len))
+    print("Expected test len: " + str(test_len) + " Got test len: " + str(test_file_len))
+    print("Expected test len: " + str(extended_test_len) + " Got test len: " + str(extended_test_file_len))
+
+
 if __name__ == "__main__":
     device = set_device()
     fileList = get_filelist()
@@ -323,5 +355,6 @@ if __name__ == "__main__":
     # generate_train_file(train)
     # generate_val_file(val)
     # generate_test_file(test)
-    generate_extended_test_file(test,pretrain)
+    # generate_extended_test_file(test,pretrain)
+    check_files_correct_len(train, val, test, pretrain)
     print("Completed")
