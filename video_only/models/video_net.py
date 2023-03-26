@@ -36,9 +36,9 @@ class PositionalEncoding(nn.Module):
         print(len(inputBatch))
         print(len(self.pe[:inputBatch.shape[0],:,:]))
 
-        if len(self.pe[:inputBatch.shape[0],:,:]) > len(inputBatch):
+        if len(inputBatch) > len(self.pe[:inputBatch.shape[0],:,:]):
             print("Time to chop")
-            diff = self.pe[:inputBatch.shape[0],:,:] - len(inputBatch)
+            diff = len(inputBatch) - self.pe[:inputBatch.shape[0],:,:]
 
             print("DIFF" + str(diff))
             inputBatch = inputBatch[:-diff]
