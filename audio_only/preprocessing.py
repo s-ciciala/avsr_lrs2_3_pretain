@@ -266,7 +266,9 @@ def generate_extended_test_file(test,pretrain):
             if "{" in string_to_add:
                 string_to_add = lrs3_parse(string_to_add)
             # print(string_to_add)
-            example_dict["TEXT"].append(string_to_add)
+            if len(string_to_add) < args["MAX_CHAR_LEN"]:
+                example_dict["ID"].append(examples_npy_dir)
+                example_dict["TEXT"].append(string_to_add)
             # print(example_dict)
 
     for test_dir in tqdm(pretrain):
@@ -276,12 +278,14 @@ def generate_extended_test_file(test,pretrain):
             # print(text_file)
             examples_npy_dir = text_file.split("txt")[0][:-1]
             # print(examples_npy_dir)
-            example_dict["ID"].append(examples_npy_dir)
             string_to_add = str(lines[0][6: -1])
             if "{" in string_to_add:
                 string_to_add = lrs3_parse(string_to_add)
             # print(string_to_add)
-            example_dict["TEXT"].append(string_to_add)
+            if len(string_to_add) < args["MAX_CHAR_LEN"]:
+                example_dict["ID"].append(examples_npy_dir)
+                example_dict["TEXT"].append(string_to_add)
+
             # print(example_dict)
 
     if os.path.isfile(test_dir_file):
