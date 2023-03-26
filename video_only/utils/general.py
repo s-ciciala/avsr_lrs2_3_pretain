@@ -95,6 +95,8 @@ def evaluate(model, evalLoader, loss_function, device, evalParams):
         else:
             print("Invalid Decode Scheme")
             exit()
+
+
         evalCER = evalCER + compute_cer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch)
         evalWER = evalWER + compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch,
                                         evalParams["spaceIx"])
