@@ -33,11 +33,14 @@ class PositionalEncoding(nn.Module):
 
 
     def forward(self, inputBatch):
-        print("HERE")
         print(len(inputBatch))
         print(len(self.pe[:inputBatch.shape[0],:,:]))
+
         if len(self.pe[:inputBatch.shape[0],:,:]) > len(inputBatch):
+            print("Time to chop")
             diff = self.pe[:inputBatch.shape[0],:,:] - len(inputBatch)
+
+            print("DIFF" + str(diff))
             inputBatch = inputBatch[:-diff]
 
         print(len(inputBatch))
