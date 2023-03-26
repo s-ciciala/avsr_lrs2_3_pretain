@@ -12,6 +12,7 @@ args["TEST_SIZE"] = 1000
 args["TEST_SET"] = "test"
 args["PRETRAIN_SET"] = "pretrain"
 args["PRETRAIN_SET_SIZE"] = 500
+
 args["TRAIN_SET"] = "trainval"
 args["VAL_DIRECTORY"] = "../../lrs3/" + "test/"
 args["PRETRAIN_DIRECTORY"] = "../../lrs3/" + "pretrain/"

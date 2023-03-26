@@ -295,7 +295,7 @@ def generate_extended_test_file(test,pretrain):
 
 
 def split_trainval(fileList):
-    trainval_only = [x for x in fileList if (args["VIDEO_TRAINVAL_NAME"] in x)]
+    trainval_only = [x for x in fileList if (args["TRAIN_SET"] in x)]
     print("We have a total of :" + str(len(trainval_only)))
     print("Now we want a split 80/20")
     train, val = train_test_split(trainval_only, test_size=.20, shuffle=False)
