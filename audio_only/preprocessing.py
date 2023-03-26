@@ -355,6 +355,6 @@ if __name__ == "__main__":
     # generate_train_file(train)
     # generate_val_file(val)
     # generate_test_file(test)
-    # generate_extended_test_file(test,pretrain)
+    generate_extended_test_file(test,pretrain)
     check_files_correct_len(train, val, test, pretrain)
     print("Completed")
