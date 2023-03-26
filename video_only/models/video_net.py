@@ -34,7 +34,7 @@ class PositionalEncoding(nn.Module):
 
     def forward(self, inputBatch):
         print(len(inputBatch))
-        print(len(inputBatch.shape[0]))
+        print(inputBatch.shape[0])
         outputBatch = inputBatch + self.pe[:inputBatch.shape[0],:,:]
         return outputBatch
 
