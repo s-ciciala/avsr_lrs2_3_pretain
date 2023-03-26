@@ -336,6 +336,7 @@ def check_files_correct_len(train, val, test,pretrain):
     print("Expected train len: " + str(train_len) + " Got train len: " + str(train_file_len))
     print("Expected val len: " + str(val_len) + " Got val len: " + str(val_file_len))
     print("Expected test len: " + str(test_len) + " Got test len: " + str(test_file_len))
+    print("Should be lower due to string chopping to max length")
     print("Expected test len: " + str(extended_test_len) + " Got test len: " + str(extended_test_file_len))
 
 
