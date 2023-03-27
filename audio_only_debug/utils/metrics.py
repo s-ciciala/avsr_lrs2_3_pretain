@@ -64,8 +64,14 @@ def compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch
 
     for n in range(len(preds)):
         print("Walking through and example...")
-        pred = int(preds[n].numpy()[:-1])
-        trgt = int(trgts[n].numpy()[:-1])
+        pred = preds[n].numpy()[:-1]
+        trgt = trgts[n].numpy()[:-1]
+
+        #TURN TO INTS
+        pred = [int(x) for x in pred]
+        trgt = [int(x) for x in trgt]
+
+
         print("Prediction " + str(pred))
         print("Target " + str(trgt))
         exit()
