@@ -8,6 +8,7 @@ https://github.com/lordmartian/deep_avsr
 import torch
 import numpy as np
 import editdistance
+from config import args
 
 
 
