@@ -76,7 +76,7 @@ def compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch
 
         print(" prediction_words " + str(prediction_words))
         print(" target_words " + str(target_words))
-
+        exit()
         # Compute edit distance between prediction and target words
         errors = editdistance(prediction_words, target_words)
 
