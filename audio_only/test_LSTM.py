@@ -81,7 +81,7 @@ def main():
 
         # model.load_state_dict(torch.load(args["TRAINED_MODEL_FILE"], map_location=device))
         saved_state_dict = torch.load( args["TRAINED_MODEL_FILE"], map_location=device)
-        print(saved_state_dict)
+        print(saved_state_dict["model_state_dict"])
         exit(1)
         new_state_dict = {}
         for k, v in saved_state_dict.items():
