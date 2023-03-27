@@ -108,8 +108,6 @@ def evaluate(model, evalLoader, loss_function, device, evalParams):
 
         model.eval()
         index_to_char = args["INDEX_TO_CHAR"]
-        predictionStrings = []
-        targetStrings = []
         with torch.no_grad():
             outputBatch = model(inputBatch)
             with torch.backends.cudnn.flags(enabled=False):
