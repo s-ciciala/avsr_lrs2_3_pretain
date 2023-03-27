@@ -62,7 +62,7 @@ def main():
         for key in state_dict.keys():
             new_key = key.replace("module.", "")
             new_state_dict[new_key] = state_dict[key]
-        model.load_state_dict(new_state_dict)
+        # model.load_state_dict(new_state_dict)
 
         # model.load_state_dict(torch.load(args["TRAINED_MODEL_FILE"], map_location=device))
         # saved_state_dict = torch.load( args["TRAINED_MODEL_FILE"], map_location=device)
@@ -75,7 +75,7 @@ def main():
         for key in keys_to_drop:
             new_state_dict.pop(key)
         ##ADD/REMOVE REQUIRED MODS
-
+        model.load_state_dict(new_state_dict)
         # model.load_state_dict(new_state_dict)
         model.to(device)
         loss_function = nn.CTCLoss(blank=0, zero_infinity=True)
