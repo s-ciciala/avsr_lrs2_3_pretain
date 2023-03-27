@@ -90,7 +90,8 @@ def evaluate(model, evalLoader, loss_function, device, evalParams):
     evalLoss = 0
     evalCER = 0
     evalWER = 0
-
+    predictionStrings = []
+    targetStrings = []
     for batch, (inputBatch, targetBatch, inputLenBatch, targetLenBatch) in enumerate(tqdm(evalLoader, leave=False, desc="Eval",
                                                                                           ncols=75)):
 
