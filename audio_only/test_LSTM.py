@@ -92,9 +92,7 @@ def main():
         for k, v in model_state_dict.items():
             name = k.replace('module.', '')  # remove the "module." prefix
             new_state_dict[name] = v
-        for k, v in optimizer_state_dict.items():
-            name = k.replace('module.', '')  # remove the "module." prefix
-            new_state_dict[name] = v
+
         #ADD/REMOVE REQUIRED MODS
         # keys_to_drop = ["epoch","model_state_dict", "optimizer_state_dict", "loss"]
         # for key in keys_to_drop:
