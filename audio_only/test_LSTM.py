@@ -87,7 +87,6 @@ def main():
         model_state_dict = saved_state_dict["model_state_dict"]
         optimizer_state_dict = saved_state_dict["optimizer_state_dict"]
         model_loss = saved_state_dict["loss"]
-        exit(1)
         new_state_dict = {}
         for k, v in model_state_dict.items():
             name = k.replace('module.', '')  # remove the "module." prefix
