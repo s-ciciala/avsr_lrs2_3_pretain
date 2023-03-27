@@ -53,7 +53,7 @@ def compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch
 
     targetBatch = targetBatch.cpu()
     targetLenBatch = targetLenBatch.cpu()
-    print("Walking through and example...")
+    # print("Walking through and example...")
 
     preds = list(torch.split(predictionBatch, predictionLenBatch.tolist()))
     trgts = list(torch.split(targetBatch, targetLenBatch.tolist()))
