@@ -83,6 +83,8 @@ def compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch
         targ_indx = [index_to_char[x] for x in trgt]
         print("targ words " + str(targ_indx))
 
+        print("editditance " + str(editdistance.eval(pred_indx, targ_indx)))
+
         predWords = np.split(pred, np.where(pred == spaceIx)[0])
         predWords = [predWords[0].tostring()] + [predWords[i][1:].tostring() for i in range(1, len(predWords)) if len(predWords[i][1:]) != 0]
 
