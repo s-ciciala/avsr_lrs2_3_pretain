@@ -26,8 +26,13 @@ args["EPOCHS_SO_FAR"] = 0
 
 args["VIDEO_RESULTS_TEXT_FILENAME"] = "test_results_video_only_train-step_2680-wer_1.053.txt"
 args["TRAINED_VIDEO_MODEL_FILE"] = "../../curr_trained_models/video/train-step_2680-wer_1.053.pt"   #relative path to the trained model file
-args["AUDIO_RESULTS_TEXT_FILENAME"] = "test_results_video_only_train-step_2680-wer_1.053.txt"
-args["TRAINED_AUDIO_MODEL_FILE"] = "../../curr_trained_models/video/train-step_2680-wer_1.053.pt"   #relative path to the trained model file
+
+args["AUDIO_RESULTS_TEXT_FILENAME"] = "test_results_audio_only_train-step_1950-wer_1.000.txt"
+args["TRAINED_AUDIO_MODEL_FILE"] = "../../curr_trained_models/audio/train-step_1950-wer_1.000.pt"   #relative path to the trained model file
+
+args["AUDIO_VISUAL_RESULTS_TEXT_FILENAME"] = "test_results_audio_video_train-step_2210-wer_0.677.txt"
+args["TRAINED_AUDIO_VISUAL_MODEL_FILE"] = "../../curr_trained_models/audio_video/train-step_2210-wer_0.677.pt"   #relative path to the trained model file
+
 
 
 
