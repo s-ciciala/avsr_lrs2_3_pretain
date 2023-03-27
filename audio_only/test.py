@@ -58,13 +58,19 @@ def main():
                          args["AUDIO_FEATURE_SIZE"], args["TX_FEEDFORWARD_DIM"], args["TX_DROPOUT"],
                          args["NUM_CLASSES"])
 
-        model.load_state_dict(torch.load(args["TRAINED_MODEL_FILE"], map_location=device))
-        # saved_state_dict = torch.load( args["TRAINED_MODEL_FILE"], map_location=device)
-        # new_state_dict = {}
-        # for k, v in saved_state_dict.items():
-        #     name = k.replace('module.', '')  # remove the "module." prefix
-        #     new_state_dict[name] = v
-        # model.load_state_dict(new_state_dict)
+        # model.load_state_dict(torch.load(args["TRAINED_MODEL_FILE"], map_location=device))
+        saved_state_dict = torch.load( args["TRAINED_MODEL_FILE"], map_location=device)
+        new_state_dict = {}
+        for k, v in saved_state_dict.items():
+            name = k.replace('module.', '')  # remove the "module." prefix
+            new_state_dict[name] = v
+        ##ADD REQUIRED MODS
+        new_state_dict["epoch"] = 1950
+        new_state_dict["model_state_dict"] = []
+        new_state_dict["optimizer_state_dict"] = []
+        new_state_dict["loss"] = 1.3
+
+        model.load_state_dict(new_state_dict)
         model.to(device)
         loss_function = nn.CTCLoss(blank=0, zero_infinity=True)
 
