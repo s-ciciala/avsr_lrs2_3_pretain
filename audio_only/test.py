@@ -59,18 +59,23 @@ def main():
                          args["NUM_CLASSES"])
 
         # model.load_state_dict(torch.load(args["TRAINED_MODEL_FILE"], map_location=device))
-        saved_state_dict = torch.load( args["TRAINED_MODEL_FILE"], map_location=device)
-        new_state_dict = {}
-        for k, v in saved_state_dict.items():
-            name = k.replace('module.', '')  # remove the "module." prefix
-            new_state_dict[name] = v
+        # saved_state_dict = torch.load( args["TRAINED_MODEL_FILE"], map_location=device)
+        # new_state_dict = {}
+        # for k, v in saved_state_dict.items():
+        #     name = k.replace('module.', '')  # remove the "module." prefix
+        #     new_state_dict[name] = v
         ##ADD/REMOVE REQUIRED MODS
-        keys_to_drop = ["epoch","model_state_dict", "optimizer_state_dict", "loss"]
-        for key in keys_to_drop:
-            new_state_dict.pop(key)
-        ##ADD/REMOVE REQUIRED MODS
+        # keys_to_drop = ["epoch","model_state_dict", "optimizer_state_dict", "loss"]
+        # for key in keys_to_drop:
+        #     new_state_dict.pop(key)
+        # ##ADD/REMOVE REQUIRED MODS
+        incompatible_state_dict = torch.load( args["TRAINED_MODEL_FILE"], map_location=device)
+        state_dict = {}
+        for key in incompatible_state_dict():
+            state_dict[key.split("module.")[-1]] = incompatible_state_dict[key]
 
-        model.load_state_dict(new_state_dict)
+        model = model.load_state_dict(state_dict)
+        # model.load_state_dict(new_state_dict)
         model.to(device)
         loss_function = nn.CTCLoss(blank=0, zero_infinity=True)
 
