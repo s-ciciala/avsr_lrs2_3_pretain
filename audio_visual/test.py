@@ -68,9 +68,9 @@ def main():
             new_state_dict[name] = v
 
         #ADD/REMOVE REQUIRED MODS
-        keys_to_drop = ["epoch","model_state_dict", "optimizer_state_dict", "loss"]
-        for key in keys_to_drop:
-            new_state_dict.pop(key)
+        # keys_to_drop = ["epoch","model_state_dict", "optimizer_state_dict", "loss"]
+        # for key in keys_to_drop:
+        #     new_state_dict.pop(key)
         ##ADD/REMOVE REQUIRED MODS
 
         model.load_state_dict(new_state_dict)
