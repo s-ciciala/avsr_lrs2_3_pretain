@@ -24,6 +24,10 @@ args["CONTINUE_TRAINING"] = "/disk/scratch1/s1834237/avsr_lrs3_CTRS/avsr_lrs3_CT
 # args["CONTINUE_TRAINING"] = None
 args["EPOCHS_SO_FAR"] = 0
 
+args["VIDEO_RESULTS_TEXT_FILENAME"] = "test_results_video_only_train-step_2680-wer_1.053.txt"
+args["TRAINED_VIDEO_MODEL_FILE"] = "../../curr_trained_models/video/train-step_2680-wer_1.053.pt"   #relative path to the trained model file
+
+
 #data
 args["PRETRAIN_VAL_SPLIT"] = 0.01   #validation set size fraction during pretraining
 args["NUM_WORKERS"] = 8 #dataloader num_workers argument
