@@ -27,7 +27,7 @@ def main():
                         videoParams)
     testLoader = DataLoader(testData, batch_size=args["BATCH_SIZE"], collate_fn=collate_fn, shuffle=True, **kwargs)
 
-    args["TRAINED_MODEL_FILE"] = args["TRAINED_VIDEO_MODEL_FILE"]
+    args["TRAINED_MODEL_FILE"] = args["PRETRAINED_VIDEO_MODEL_FILE"]
 
     if args["TRAINED_MODEL_FILE"] is not None:
 
@@ -37,6 +37,8 @@ def main():
         model = VideoNet(args["TX_NUM_FEATURES"], args["TX_ATTENTION_HEADS"], args["TX_NUM_LAYERS"], args["PE_MAX_LENGTH"],
                          args["TX_FEEDFORWARD_DIM"], args["TX_DROPOUT"], args["NUM_CLASSES"])
         saved_state_dict = torch.load(args["TRAINED_MODEL_FILE"], map_location=device)
+
+
         new_state_dict = {}
         for k, v in saved_state_dict.items():
             name = k.replace('module.', '')  # remove the "module." prefix
