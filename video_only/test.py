@@ -39,11 +39,21 @@ def main():
                          args["TX_FEEDFORWARD_DIM"], args["TX_DROPOUT"], args["NUM_CLASSES"])
         saved_state_dict = torch.load(args["TRAINED_MODEL_FILE"], map_location=device)
 
+        try:
+            model_epoch = saved_state_dict["epoch"]
+            model_state_dict = saved_state_dict["model_state_dict"]
+            optimizer_state_dict = saved_state_dict["optimizer_state_dict"]
+            model_loss = saved_state_dict["loss"]
+            new_state_dict = {}
+            for k, v in model_state_dict.items():
+                name = k.replace('module.', '')  # remove the "module." prefix
+                new_state_dict[name] = v
+        except:
+            new_state_dict = {}
+            for k, v in saved_state_dict.items():
+                name = k.replace('module.', '')  # remove the "module." prefix
+                new_state_dict[name] = v
 
-        new_state_dict = {}
-        for k, v in saved_state_dict.items():
-            name = k.replace('module.', '')  # remove the "module." prefix
-            new_state_dict[name] = v
         model.load_state_dict(new_state_dict)
         model.to(device)
         loss_function = nn.CTCLoss(blank=0, zero_infinity=True)
