@@ -8,7 +8,7 @@ https://github.com/lordmartian/deep_avsr
 import torch
 import numpy as np
 import editdistance
-
+from config import args
 
 
 def compute_cer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch):
@@ -61,6 +61,7 @@ def compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch
     # print("Targets " + str(trgts))
     totalEdits = 0
     totalWords = 0
+    index_to_char = args["INDEX_TO_CHAR"]
 
     for n in range(len(preds)):
         print("Walking through and example...")
@@ -74,6 +75,10 @@ def compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch
 
         print("Prediction " + str(pred))
         print("Target " + str(trgt))
+
+        print("Trying something out")
+        pred_indx = [index_to_char[x] for x in pred]
+        print("pred words " + str(pred_indx))
 
         predWords = np.split(pred, np.where(pred == spaceIx)[0])
         predWords = [predWords[0].tostring()] + [predWords[i][1:].tostring() for i in range(1, len(predWords)) if len(predWords[i][1:]) != 0]
