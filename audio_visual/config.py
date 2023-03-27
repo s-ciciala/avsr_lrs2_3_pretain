@@ -32,6 +32,11 @@ args["TRAINED_AUDIO_MODEL_FILE"] = "../../curr_trained_models/audio/train-step_1
 args["AUDIO_VISUAL_RESULTS_TEXT_FILENAME"] = "test_results_audio_video_train-step_2210-wer_0.677.txt"
 args["TRAINED_AUDIO_VISUAL_MODEL_FILE"] = "../../curr_trained_models/audio_video/train-step_2210-wer_0.677.pt"   #relative path to the trained model file
 
+args["PRETRAINED_AUDIO_MODEL_FILE"] = "../../pre_models/pre_models/audio-only.pt"
+args["PRETRAINED_VIDEO_MODEL_FILE"] = "../../pre_models/pre_models/video-only.pt"
+args["PRETRAINED_AUDIO_VIDEO_MODEL_FILE"] = "../../pre_models/pre_models/audio-visual.pt"
+
+
 #data
 args["PRETRAIN_VAL_SPLIT"] = 0.01   #validation set size fraction during pretraining
 args["NUM_WORKERS"] = 8 #dataloader num_workers argument
