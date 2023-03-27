@@ -80,6 +80,9 @@ def compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch
         pred_indx = [index_to_char[x] for x in pred]
         print("pred words " + str(pred_indx))
 
+        targ_indx = [index_to_char[x] for x in trgt]
+        print("targ words " + str(targ_indx))
+
         predWords = np.split(pred, np.where(pred == spaceIx)[0])
         predWords = [predWords[0].tostring()] + [predWords[i][1:].tostring() for i in range(1, len(predWords)) if len(predWords[i][1:]) != 0]
 
@@ -87,8 +90,8 @@ def compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch
         trgtWords = np.split(trgt, np.where(trgt == spaceIx)[0])
         trgtWords = [trgtWords[0].tostring()] + [trgtWords[i][1:].tostring() for i in range(1, len(trgtWords))]
 
-        print("Prediction words " + str(predWords))
-        print("Target words " + str(trgtWords))
+        # print("Prediction words " + str(predWords))
+        # print("Target words " + str(trgtWords))
         exit()
 
         numEdits = editdistance.eval(predWords, trgtWords)
