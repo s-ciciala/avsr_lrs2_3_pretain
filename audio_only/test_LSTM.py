@@ -65,15 +65,24 @@ def main():
                          dropout=args["TX_DROPOUT"],
                          numClasses=args["NUM_CLASSES"])
         # LSTM ONLY
-        state_dict = torch.load(args["TRAINED_MODEL_FILE"], map_location=device)
-        new_state_dict = {}
+        # state_dict = torch.load(args["TRAINED_MODEL_FILE"], map_location=device)
+        # new_state_dict = {}
         # for key in state_dict.keys():
         #     new_key = key.replace("module.", "")
         #     new_state_dict[new_key] = state_dict[key]
         # model.load_state_dict(new_state_dict)
+        #
+        # save_dict = {
+        #     'epoch': step,
+        #     'model_state_dict': model.state_dict(),
+        #     'optimizer_state_dict': optimizer.state_dict(),
+        #     'loss': trainingLoss,
+        # }
 
         # model.load_state_dict(torch.load(args["TRAINED_MODEL_FILE"], map_location=device))
         saved_state_dict = torch.load( args["TRAINED_MODEL_FILE"], map_location=device)
+        print(saved_state_dict)
+        exit(1)
         new_state_dict = {}
         for k, v in saved_state_dict.items():
             name = k.replace('module.', '')  # remove the "module." prefix
