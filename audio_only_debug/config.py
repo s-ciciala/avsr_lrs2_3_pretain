@@ -23,6 +23,18 @@ args["TRAINED_MODEL_FILE"] = "../../pre_models/pre_models/audio-only.pt"   #rela
 args["TRAINED_FRONTEND_FILE"] = "../../deep_avsr_models/visual_frontend/visual_frontend.pt" #absolute path to the trained language model file
 args["TRAINED_LM_FILE"] = "../../deep_avsr_models/language_model/language_model.pt" #absolute path to the trained visual frontend file
 
+args["VIDEO_RESULTS_TEXT_FILENAME"] = "test_results_video_only_train-step_2680-wer_1.053.txt"
+args["TRAINED_VIDEO_MODEL_FILE"] = "../../curr_trained_models/video/train-step_2680-wer_1.053.pt"   #relative path to the trained model file
+
+args["AUDIO_RESULTS_TEXT_FILENAME"] = "test_results_audio_only_pretrained_debuging.txt"
+args["TRAINED_AUDIO_MODEL_FILE"] = "../../curr_trained_models/audio/train-step_1950-wer_1.000.pt"   #relative path to the trained model file
+
+args["AUDIO_VISUAL_RESULTS_TEXT_FILENAME"] = "test_results_audio_video_train-step_2210-wer_0.677.txt"
+args["TRAINED_AUDIO_VISUAL_MODEL_FILE"] = "../../curr_trained_models/audio_video/train-step_2210-wer_0.677.pt"   #relative path to the trained model file
+
+args["PRETRAINED_AUDIO_MODEL_FILE"] = "../../pre_models/pre_models/audio-only.pt"
+
+
 #data
 args["PRETRAIN_VAL_SPLIT"] = 0.01   #validation set size fraction during pretraining
 args["NUM_WORKERS"] = 8 #dataloader num_workers argument
@@ -76,20 +88,20 @@ args["NUM_CLASSES"] = 40    #number of output characters
 
 #transformer architecture
 
-args["PE_MAX_LENGTH"] = 2500    #length up to which we calculate positional encodings
-args["TX_NUM_FEATURES"] = 512   #transformer input feature size
-args["TX_ATTENTION_HEADS"] = 8  #number of attention heads in multihead attention layer
-args["TX_NUM_LAYERS"] = 6  #number of Transformer Encoder blocks in the stack
-args["TX_FEEDFORWARD_DIM"] = 2048   #hidden layer size in feedforward network of transformer
-args["TX_DROPOUT"] = 0.1    #dropout probability in the transformer
-args["DISPLAY_PREDICTIONS"] = False
 # args["PE_MAX_LENGTH"] = 2500    #length up to which we calculate positional encodings
 # args["TX_NUM_FEATURES"] = 512   #transformer input feature size
-# args["TX_ATTENTION_HEADS"] = 4  #number of attention heads in multihead attention layer
-# args["TX_NUM_LAYERS"] = 3  #number of Transformer Encoder blocks in the stack
-# args["TX_FEEDFORWARD_DIM"] = 1024   #hidden layer size in feedforward network of transformer
-# # args["TX_FEEDFORWARD_DIM"] = 2048   #hidden layer size in feedforward network of transformer
+# args["TX_ATTENTION_HEADS"] = 8  #number of attention heads in multihead attention layer
+# args["TX_NUM_LAYERS"] = 6  #number of Transformer Encoder blocks in the stack
+# args["TX_FEEDFORWARD_DIM"] = 2048   #hidden layer size in feedforward network of transformer
 # args["TX_DROPOUT"] = 0.1    #dropout probability in the transformer
+args["DISPLAY_PREDICTIONS"] = True
+args["PE_MAX_LENGTH"] = 2500    #length up to which we calculate positional encodings
+args["TX_NUM_FEATURES"] = 512   #transformer input feature size
+args["TX_ATTENTION_HEADS"] = 4  #number of attention heads in multihead attention layer
+args["TX_NUM_LAYERS"] = 3  #number of Transformer Encoder blocks in the stack
+args["TX_FEEDFORWARD_DIM"] = 1024   #hidden layer size in feedforward network of transformer
+# args["TX_FEEDFORWARD_DIM"] = 2048   #hidden layer size in feedforward network of transformer
+args["TX_DROPOUT"] = 0.1    #dropout probability in the transformer
 args["LSTM_ON"] = False
 #
 
