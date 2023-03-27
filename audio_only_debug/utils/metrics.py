@@ -94,9 +94,11 @@ def compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch
 
         # print("Prediction words " + str(predWords))
         # print("Target words " + str(trgtWords))
-        exit()
 
         numEdits = editdistance.eval(predWords, trgtWords)
+        print("PREDICTED ONE " + str(numEdits))
+        exit()
+
         totalEdits = totalEdits + numEdits
         totalWords = totalWords + len(trgtWords)
 
