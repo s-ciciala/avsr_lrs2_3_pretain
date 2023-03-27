@@ -69,6 +69,7 @@ def main():
         new_state_dict["model_state_dict"] = []
         new_state_dict["optimizer_state_dict"] = []
         new_state_dict["loss"] = 1.3
+        print("HERE")
 
         model.load_state_dict(new_state_dict)
         model.to(device)
