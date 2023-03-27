@@ -32,8 +32,7 @@ def compute_cer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch
     for n in range(len(preds)):
         pred = preds[n].numpy()[:-1]
         trgt = trgts[n].numpy()[:-1]
-        pred = [int(x) for x in pred]
-        trgt = [int(x) for x in trgt]
+
         numEdits = editdistance.eval(pred, trgt)
         totalEdits = totalEdits + numEdits
         totalChars = totalChars + len(trgt)
@@ -63,68 +62,54 @@ def compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch
     # print("Targets " + str(trgts))
     totalEdits = 0
     totalWords = 0
-    total_words = 0
-    total_errors = 0
     index_to_char = args["INDEX_TO_CHAR"]
-    for i in range(len(predictionBatch)):
-        # Convert character predictions to words
-        prediction = predictionBatch[i][:predictionLenBatch[i]]
-        target = targetBatch[i][:targetLenBatch[i]]
 
-        prediction_words = ''.join([chr(c) if c != spaceIx else ' ' for c in prediction]).split()
-        target_words = ''.join([chr(c) if c != spaceIx else ' ' for c in target]).split()
+    for n in range(len(preds)):
+        pred = preds[n].numpy()[:-1]
+        trgt = trgts[n].numpy()[:-1]
 
-        print(" prediction_words " + str(prediction_words))
-        print(" target_words " + str(target_words))
-        exit()
-        # Compute edit distance between prediction and target words
-        errors = editdistance(prediction_words, target_words)
-
-        total_errors += errors
-        total_words += len(target_words)
-
-    # Compute word error rate
-    wer = total_errors / total_words if total_words > 0 else 0
+        #TURN TO INTS
+        pred = [int(x) for x in pred]
+        trgt = [int(x) for x in trgt]
 
 
+        print("Prediction " + str(pred))
+        print("Target " + str(trgt))
 
-    # for n in range(len(preds)):
-    #     print("Walking through and example...")
-    #     pred = preds[n].numpy()[:-1]
-    #     trgt = trgts[n].numpy()[:-1]
-    #
-    #     #TURN TO INTS
-    #     pred = [int(x) for x in pred]
-    #     trgt = [int(x) for x in trgt]
-    #
-    #
-    #     print("Prediction " + str(pred))
-    #     print("Target " + str(trgt))
-    #
-    #     print("Trying something out")
-    #     pred_indx = [index_to_char[x] for x in pred]
-    #     print("pred words " + str(pred_indx))
-    #
-    #     targ_indx = [index_to_char[x] for x in trgt]
-    #     print("targ words " + str(targ_indx))
-    #
-    #     print("editditance " + str(editdistance.eval(pred_indx, targ_indx)))
-    #
-    #     predWords = np.split(pred, np.where(pred == spaceIx)[0])
-    #     predWords = [predWords[0].tostring()] + [predWords[i][1:].tostring() for i in range(1, len(predWords)) if len(predWords[i][1:]) != 0]
-    #
-    #
-    #     trgtWords = np.split(trgt, np.where(trgt == spaceIx)[0])
-    #     trgtWords = [trgtWords[0].tostring()] + [trgtWords[i][1:].tostring() for i in range(1, len(trgtWords))]
-    #
-    #     # print("Prediction words " + str(predWords))
-    #     # print("Target words " + str(trgtWords))
-    #
-    #     numEdits = editdistance.eval(predWords, trgtWords)
-    #     print("PREDICTED ONE " + str(numEdits))
-    #     exit(1)
-    #
-    #     totalEdits = totalEdits + numEdits
-    #     totalWords = totalWords + len(trgtWords)
+        print("Trying something out")
+        pred_indx = [index_to_char[x] for x in pred]
+        targ_indx = [index_to_char[x] for x in trgt]
+        print("targ words " + str(targ_indx))
+
+        print("editditance " + str(editdistance.eval(pred_indx, targ_indx)))
+
+        pred_str = ''.join(pred_indx)
+        targ_str = ''.join(targ_indx)
+
+        print("pred_str " + str(pred_str))
+        print("targ_str " + str(targ_str))
+
+        pred_words = pred_str.split()
+        targ_words = targ_str.split()
+
+        print("pred_words " + str(pred_words))
+        print("targ_words " + str(targ_words))
+
+        predWords = np.split(pred, np.where(pred == spaceIx)[0])
+        predWords = [predWords[0].tostring()] + [predWords[i][1:].tostring() for i in range(1, len(predWords)) if len(predWords[i][1:]) != 0]
+
+
+        trgtWords = np.split(trgt, np.where(trgt == spaceIx)[0])
+        trgtWords = [trgtWords[0].tostring()] + [trgtWords[i][1:].tostring() for i in range(1, len(trgtWords))]
+
+        # print("Prediction words " + str(predWords))
+        # print("Target words " + str(trgtWords))
+
+        numEdits = editdistance.eval(predWords, trgtWords)
+        print("PREDICTED ONE " + str(numEdits))
+        exit(1)
+
+        totalEdits = totalEdits + numEdits
+        totalWords = totalWords + len(trgtWords)
 
     return totalEdits/totalWords
