@@ -52,11 +52,16 @@ def compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch
 
     targetBatch = targetBatch.cpu()
     targetLenBatch = targetLenBatch.cpu()
+    print("Walking through and example")
 
     preds = list(torch.split(predictionBatch, predictionLenBatch.tolist()))
     trgts = list(torch.split(targetBatch, targetLenBatch.tolist()))
+
+    print("Predictions " + str(preds))
+    print("Targets " + str(trgts))
     totalEdits = 0
     totalWords = 0
+    exit()
 
     for n in range(len(preds)):
         pred = preds[n].numpy()[:-1]

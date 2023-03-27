@@ -122,6 +122,7 @@ def evaluate(model, evalLoader, loss_function, device, evalParams):
             evalCER = evalCER + compute_cer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch)
             evalWER = evalWER + compute_wer(predictionBatch, targetBatch, predictionLenBatch, targetLenBatch,
                                             evalParams["spaceIx"])
+
             ##Per batch, predict what it should be , show the target
             # Convert prediction and target tensors to strings
             index_to_char = args["INDEX_TO_CHAR"]
