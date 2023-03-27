@@ -23,6 +23,14 @@ args["TRAINED_MODEL_FILE"] = "../../pre_models/pre_models/audio-visual.pt"   #re
 args["TRAINED_FRONTEND_FILE"] = "../../deep_avsr_models/visual_frontend/visual_frontend.pt" #absolute path to the trained language model file
 args["TRAINED_LM_FILE"] = "../../deep_avsr_models/language_model/language_model.pt" #absolute path to the trained visual frontend file
 
+args["VIDEO_RESULTS_TEXT_FILENAME"] = "test_results_video_only_train-step_2680-wer_1.053.txt"
+args["TRAINED_VIDEO_MODEL_FILE"] = "../../curr_trained_models/video/train-step_2680-wer_1.053.pt"   #relative path to the trained model file
+
+args["AUDIO_RESULTS_TEXT_FILENAME"] = "test_results_audio_only_train-step_1950-wer_1.000.txt"
+args["TRAINED_AUDIO_MODEL_FILE"] = "../../curr_trained_models/audio/train-step_1950-wer_1.000.pt"   #relative path to the trained model file
+
+args["AUDIO_VISUAL_RESULTS_TEXT_FILENAME"] = "test_results_audio_video_train-step_2210-wer_0.677.txt"
+args["TRAINED_AUDIO_VISUAL_MODEL_FILE"] = "../../curr_trained_models/audio_video/train-step_2210-wer_0.677.pt"   #relative path to the trained model file
 
 #data
 args["PRETRAIN_VAL_SPLIT"] = 0.01   #validation set size fraction during pretraining

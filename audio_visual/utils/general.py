@@ -163,7 +163,7 @@ def evaluate(model, evalLoader, loss_function, device, evalParams):
             print("------------------TARGET------------------")
             print("------------------TARGET------------------")
             print(targetStrings[i])
-        with open('test_results_audio_visual.txt', 'w') as f:
+        with open(args["AUDIO_VISUAL_RESULTS_TEXT_FILENAME"], 'w') as f:
             for i in range(len(predictionStrings)):
                 f.write("------------------TARGET------------------\n")
                 f.write("%s\n" % str(targetStrings[i]))
