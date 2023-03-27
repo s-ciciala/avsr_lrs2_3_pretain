@@ -57,6 +57,12 @@ def main():
                          args["PE_MAX_LENGTH"],
                          args["AUDIO_FEATURE_SIZE"], args["TX_FEEDFORWARD_DIM"], args["TX_DROPOUT"],
                          args["NUM_CLASSES"])
+        state_dict = torch.load(args["TRAINED_MODEL_FILE"], map_location=device)
+        new_state_dict = {}
+        for key in state_dict.keys():
+            new_key = key.replace("module.", "")
+            new_state_dict[new_key] = state_dict[key]
+        model.load_state_dict(new_state_dict)
 
         # model.load_state_dict(torch.load(args["TRAINED_MODEL_FILE"], map_location=device))
         # saved_state_dict = torch.load( args["TRAINED_MODEL_FILE"], map_location=device)
@@ -69,12 +75,7 @@ def main():
         # for key in keys_to_drop:
         #     new_state_dict.pop(key)
         # ##ADD/REMOVE REQUIRED MODS
-        incompatible_state_dict = torch.load( args["TRAINED_MODEL_FILE"], map_location=device)
-        state_dict = {}
-        for key in incompatible_state_dict().items():
-            state_dict[key.split("module.")[-1]] = incompatible_state_dict[key]
 
-        model = model.load_state_dict(state_dict)
         # model.load_state_dict(new_state_dict)
         model.to(device)
         loss_function = nn.CTCLoss(blank=0, zero_infinity=True)
