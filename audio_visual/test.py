@@ -59,9 +59,17 @@ def main():
         for k, v in saved_state_dict.items():
             name = k.replace('module.', '')  # remove the "module." prefix
             new_state_dict[name] = v
+
+        #ADD/REMOVE REQUIRED MODS
+        keys_to_drop = ["epoch","model_state_dict", "optimizer_state_dict", "loss"]
+        for key in keys_to_drop:
+            new_state_dict.pop(key)
+        ##ADD/REMOVE REQUIRED MODS
+
         model.load_state_dict(new_state_dict)
         model.to(device)
         loss_function = nn.CTCLoss(blank=0, zero_infinity=False)
+
 
 
         #declaring the language model
