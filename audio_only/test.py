@@ -71,7 +71,7 @@ def main():
         # ##ADD/REMOVE REQUIRED MODS
         incompatible_state_dict = torch.load( args["TRAINED_MODEL_FILE"], map_location=device)
         state_dict = {}
-        for key in incompatible_state_dict():
+        for key in incompatible_state_dict().items():
             state_dict[key.split("module.")[-1]] = incompatible_state_dict[key]
 
         model = model.load_state_dict(state_dict)
